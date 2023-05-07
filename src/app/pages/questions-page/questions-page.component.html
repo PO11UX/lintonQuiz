@@ -1,0 +1,15 @@
+<div class="container-xxl" *ngIf="isQuestions | async">
+  <div class="card">
+    <div class="card-header">
+        Question {{currentQuestionId + 1}}/{{questions.length}}
+    </div>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" [style.width.%]="(100 * currentQuestionId + 1)/questions.length" attr.aria-valuenow="{{currentQuestionId + 1}}" aria-valuemin="0" attr.aria-valuemax="{{questions.length}}"></div>
+    </div>
+    <div class="card-body px-0">
+    <app-question [question]="questions[currentQuestionId]" [currentQuestionId]="currentQuestionId"></app-question>
+  </div>
+</div>
+      
+    <app-actions [currentQuestionId]="currentQuestionId" [questionsLength]="questions.length" [currentQuestion]="questions[currentQuestionId]" (changeQuestion)="changeQuestion($event)" (showResult)="showResult()"></app-actions>
+</div>
